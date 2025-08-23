@@ -37,6 +37,10 @@ EDINET API・JPX公式データ・Yahoo Finance・ChatGPTを活用し、証券�
 - Yahoo Finance財務データ一括取得
 - ChatGPTによるAI財務分析（複数CSVを統合して要約）
 - 一連の処理を `main.py` で日付指定して一括実行
+- JPX公式CSV で証券コード
+https://www.jpx.co.jp/markets/statistics-equities/misc/01.html
+<img width="1864" height="830" alt="image" src="https://github.com/user-attachments/assets/4a1dd702-5d9c-4402-8f47-9d6c6ed23e1e" />
+
 
 ---
 
