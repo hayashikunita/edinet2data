@@ -1,9 +1,11 @@
 
+
 import requests
 import pandas as pd
 import os
 import logging
 from dotenv import load_dotenv
+import argparse
 
 
 
@@ -24,9 +26,22 @@ if not api_key:
     logging.error('EDINET_API_KEY 環境変数が設定されていません。')
     raise SystemExit(1)
 
-# パラメータの設定（例: 2024年8月20日の書類を取得）
+
+# コマンドライン引数で日付指定（yyyymmdd形式）
+parser = argparse.ArgumentParser(description='EDINET APIから指定日付のZIPデータを取得')
+parser.add_argument('date', help='取得日 yyyymmdd 例: 20250821')
+args = parser.parse_args()
+
+# yyyymmdd→yyyy-mm-ddに変換
+input_date = args.date
+if len(input_date) == 8 and input_date.isdigit():
+    date_str = f'{input_date[:4]}-{input_date[4:6]}-{input_date[6:]}'
+else:
+    logging.error('日付はyyyymmdd形式で指定してください')
+    raise SystemExit(1)
+
 params = {
-    'date': '2025-08-20',
+    'date': date_str,
     'type': 2,  # 2は有価証券報告書などの決算書類
     'Subscription-Key': api_key
 }
